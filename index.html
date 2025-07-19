@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Studio - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="ide-container">
+    <!-- Top Toolbar -->
+    <div class="toolbar">
+        <div class="toolbar-left">
+            <div class="logo">Android Studio</div>
+            <div class="menu-items">
+                <span>File</span>
+                <span>Edit</span>
+                <span>View</span>
+                <span>Navigate</span>
+                <span>Code</span>
+                <span>Analyze</span>
+                <span>Refactor</span>
+                <span>Build</span>
+                <span>Run</span>
+                <span>Tools</span>
+                <span>VCS</span>
+                <span>Window</span>
+                <span>Help</span>
+            </div>
+        </div>
+        <div class="toolbar-right">
+            <div class="toolbar-center">
+                <button id="runButton" class="run-button">
+                    <span class="run-icon">▶</span>
+                    Run App
+                </button>
+            </div>
+            <div class="toolbar-actions">
+                <button id="themeToggle" class="theme-toggle">🌙</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Left Sidebar - Project Explorer -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3>📁 Portfolio Project</h3>
+            </div>
+            <div class="file-tree">
+                <div class="folder expanded">
+                    <span class="folder-icon">📂</span>
+                    <span>app/src/main/java/portfolio</span>
+                    <div class="file-list">
+                        <div class="file active" data-file="aboutme">
+                            <span class="file-icon">📄</span>
+                            AboutMe.kt
+                        </div>
+                        <div class="file" data-file="projects">
+                            <span class="file-icon">📄</span>
+                            Projects.kt
+                        </div>
+                        <div class="file" data-file="dsa">
+                            <span class="file-icon">📄</span>
+                            DSA.kt
+                        </div>
+                        <div class="file" data-file="skills">
+                            <span class="file-icon">📄</span>
+                            Skills.kt
+                        </div>
+                        <div class="file" data-file="contact">
+                            <span class="file-icon">📄</span>
+                            Contact.kt
+                        </div>
+                    </div>
+                </div>
+<!--                <div class="folder">-->
+<!--                    <span class="folder-icon">📂</span>-->
+<!--                    <span>app/src/main/res/layout</span>-->
+<!--                    <div class="file-list">-->
+<!--                        <div class="file">-->
+<!--                            <span class="file-icon">📱</span>-->
+<!--                            activity_main.xml-->
+<!--                        </div>-->
+<!--                        <div class="file">-->
+<!--                            <span class="file-icon">📱</span>-->
+<!--                            fragment_profile.xml-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+        </div>
+
+        <!-- Center - Code Editor -->
+        <div class="editor-container">
+            <div class="editor-tabs">
+                <div class="tab active" data-file="aboutme">
+                    <span>AboutMe.kt</span>
+                    <span class="close-tab">×</span>
+                </div>
+            </div>
+            <div class="code-editor">
+                <div class="code-content">
+                        <pre><code id="codeDisplay"><span class="keyword">package</span> <span class="package">com.portfolio.developer</span>
+
+<span class="keyword">import</span> <span class="import">androidx.compose.runtime.*</span>
+<span class="keyword">import</span> <span class="import">androidx.compose.foundation.layout.*</span>
+<span class="keyword">import</span> <span class="import">androidx.compose.material3.*</span>
+
+<span class="annotation">@Composable</span>
+<span class="keyword">fun</span> <span class="function">AboutMeScreen</span>() {
+    <span class="keyword">val</span> <span class="variable">developer</span> = <span class="function">remember</span> {
+        <span class="class">Developer</span>(
+            name = <span class="string">"Android Developer"</span>,
+            bio = <span class="string">"Passionate Android Developer with expertise in Kotlin..."</span>,
+            skills = <span class="function">listOf</span>(<span class="string">"Kotlin"</span>, <span class="string">"Jetpack Compose"</span>, <span class="string">"Firebase"</span>),
+            experience = <span class="string">"1000+ DSA problems solved"</span>
+        )
+    }
+
+    <span class="function">Column</span>(
+        modifier = <span class="class">Modifier</span>.<span class="function">fillMaxSize</span>().<span class="function">padding</span>(<span class="number">16</span>.<span class="unit">dp</span>)
+    ) {
+        <span class="function">ProfileCard</span>(developer = developer)
+        <span class="function">SocialLinks</span>()
+    }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right - Android Emulator -->
+        <div class="emulator-container">
+            <div class="emulator">
+                <div class="device-frame">
+                    <div class="device-screen">
+                        <!-- Emulator Home Screen -->
+                        <div class="emulator-home" id="emulatorHome">
+                            <div class="home-wallpaper">
+                                <div class="home-time">12:34</div>
+                                <div class="home-date">Monday, December 16</div>
+                                <div class="app-icon" id="portfolioAppIcon">
+                                    <div class="icon">📱</div>
+                                    <span>Portfolio</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Portfolio App Content -->
+                        <div class="portfolio-app" id="portfolioApp" style="display: none;">
+                            <div class="status-bar">
+                                <span class="time">12:34</span>
+                                <div class="status-icons">
+                                    <span>📶</span>
+                                    <span>📶</span>
+                                    <span>🔋</span>
+                                </div>
+                            </div>
+
+                            <!-- App Content -->
+                            <div class="app-content" id="appContent">
+                                <!-- About Me Screen -->
+                                <div class="screen active" id="aboutScreen">
+                                    <div class="app-header">
+                                        <h2>About Me</h2>
+                                    </div>
+                                    <div class="profile-section">
+                                        <div class="profile-image">
+                                            <div class="avatar">👨‍💻</div>
+                                        </div>
+                                        <h3>Android Developer</h3>
+                                        <p class="bio">Passionate and skilled Android Developer with a strong command over Kotlin, Jetpack Compose, and Firebase, backed by hands-on experience building modern mobile applications. As a B.Tech (AI/ML) student, I bring exceptional problem-solving prowess with 1000+ DSA problems solved.</p>
+
+                                        <!-- Life Stats -->
+                                        <div class="life-stats">
+                                            <div class="stat-item">
+                                                <span class="stat-number" id="projectsCount">0</span>
+                                                <span class="stat-label">Projects Built</span>
+                                            </div>
+                                            <div class="stat-item">
+                                                <span class="stat-number" id="dsaCount">0</span>
+                                                <span class="stat-label">DSA Solved</span>
+                                            </div>
+                                            <div class="stat-item">
+                                                <span class="stat-number" id="experienceYears">0</span>
+                                                <span class="stat-label">Years Learning</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="currently-learning">
+                                            <h4>🚀 Currently Learning</h4>
+                                            <div class="learning-tags" id="learningTags">
+                                                <!-- Dynamic content -->
+                                            </div>
+                                        </div>
+
+                                        <div class="social-links">
+                                            <button class="social-btn github" onclick="window.open('https://github.com/ramoliyaYug', '_blank')">GitHub</button>
+                                            <button class="social-btn linkedin" onclick="window.open('https://www.linkedin.com/in/yug-ramoliya-25a3b0308/', '_blank')">LinkedIn</button>
+                                            <button class="social-btn resume" onclick="window.open('https://drive.google.com/file/d/1yoZDe9w5HnbZkdN1YqEqS4zlTYI3N453/view?usp=sharing', '_blank')">Resume</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Experience Screen -->
+                                <div class="screen" id="experienceScreen">
+                                    <div class="app-header">
+                                        <h2>Experience</h2>
+                                    </div>
+                                    <div class="experience-content" id="experienceContent">
+                                        <!-- Dynamic content -->
+                                    </div>
+                                </div>
+                                <!-- Projects Screen -->
+                                <div class="screen" id="projectsScreen">
+                                    <div class="app-header">
+                                        <h2>Projects</h2>
+                                    </div>
+                                    <div class="projects-list" id="projectsList">
+                                        <!-- Projects will be dynamically loaded -->
+                                    </div>
+                                </div>
+
+                                <!-- DSA Screen -->
+                                <div class="screen" id="dsaScreen">
+                                    <div class="app-header">
+                                        <h2>DSA Progress</h2>
+                                    </div>
+                                    <div class="dsa-stats">
+                                        <div class="dsa-overview" id="dsaOverview">
+                                            <!-- Dynamic content -->
+                                        </div>
+                                        <div class="platforms" id="dsaPlatforms">
+                                            <!-- Dynamic content -->
+                                        </div>
+                                        <div class="dsa-topics">
+                                            <h4>📚 Topics Mastered</h4>
+                                            <div class="topics-grid" id="dsaTopics">
+                                                <!-- Dynamic content -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Skills Screen -->
+                                <div class="screen" id="skillsScreen">
+                                    <div class="app-header">
+                                        <h2>Skills</h2>
+                                    </div>
+                                    <div class="skills-container">
+                                        <div id="skillsContent">
+                                            <!-- Dynamic content -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Contact Screen -->
+                                <div class="screen" id="contactScreen">
+                                    <div class="app-header">
+                                        <h2>Contact</h2>
+                                    </div>
+                                    <div class="contact-links" id="contactLinks">
+                                        <!-- Dynamic content -->
+                                    </div>
+                                    <div class="contact-form">
+                                        <h4>📧 Send Message</h4>
+                                        <input type="text" id="contactName" placeholder="Your Name" class="form-input">
+                                        <input type="email" id="contactEmail" placeholder="Your Email" class="form-input">
+                                        <textarea id="contactMessage" placeholder="Your Message" class="form-textarea"></textarea>
+                                        <button id="sendMessageBtn" class="send-btn">Send Message</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bottom Navigation -->
+                            <div class="bottom-nav">
+                                <button class="nav-btn active" data-screen="about">
+                                    <span>👨‍💻</span>
+                                    <span>About</span>
+                                </button>
+                                <button class="nav-btn" data-screen="experience">
+                                    <span>💼</span>
+                                    <span>Experience</span>
+                                </button>
+                                <button class="nav-btn" data-screen="projects">
+                                    <span>📱</span>
+                                    <span>Projects</span>
+                                </button>
+                                <button class="nav-btn" data-screen="dsa">
+                                    <span>📊</span>
+                                    <span>DSA</span>
+                                </button>
+                                <button class="nav-btn" data-screen="skills">
+                                    <span>⚡</span>
+                                    <span>Skills</span>
+                                </button>
+                                <button class="nav-btn" data-screen="contact">
+                                    <span>📧</span>
+                                    <span>Contact</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom - Logcat Console -->
+    <div class="logcat">
+        <div class="logcat-header">
+            <span>Logcat</span>
+            <button id="clearLogcat">Clear</button>
+        </div>
+        <div class="logcat-content" id="logcatContent">
+            <div class="log-entry info">I/Portfolio: IDE initialized successfully</div>
+            <div class="log-entry debug">D/System: Loading project files...</div>
+            <div class="log-entry info">I/Editor: AboutMe.kt opened</div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast"></div>
+
+<!-- Fullscreen Phone Modal -->
+<div class="fullscreen-phone-modal" id="fullscreenModal">
+    <div class="fullscreen-phone-container">
+        <div class="fullscreen-header">
+            <button class="back-button" id="backToIde">
+                <span>←</span>
+                Back to IDE
+            </button>
+            <span class="fullscreen-title">Portfolio App</span>
+        </div>
+        <div class="fullscreen-device">
+            <div class="fullscreen-device-frame">
+                <div class="fullscreen-device-screen">
+                    <!-- Content will be dynamically copied here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
