@@ -64,32 +64,32 @@ const portfolioData = {
         }
     ],
     dsaStats: {
-        totalProblems: 1200,
-        activeDays: 450,
+        totalProblems: 1257,
+        activeDays: 243,
         platforms: [
             {
                 name: "LeetCode",
-                count: 520,
-                badges: ["50 Days Badge", "100 Problems", "Contest Participant"],
-                profileLink: "https://leetcode.com/username"
+                count: 650,
+                badges: [],
+                profileLink: "https://leetcode.com/u/ramoliyaYug/"
             },
             {
                 name: "Codeforces",
-                count: 380,
-                badges: ["Pupil", "Contest Regular", "Problem Setter"],
-                profileLink: "https://codeforces.com/profile/username"
+                count: 356,
+                badges: [],
+                profileLink: "https://codeforces.com/profile/ramoliyayug55"
             },
             {
                 name: "CodeChef",
-                count: 200,
-                badges: ["3 Star", "Long Challenge", "Cook-Off"],
-                profileLink: "https://codechef.com/users/username"
+                count: 192,
+                badges: [],
+                profileLink: "https://www.codechef.com/users/ramoliyayug55"
             },
             {
-                name: "GeeksforGeeks",
-                count: 100,
-                badges: ["Problem Solver", "Article Writer", "Interview Prep"],
-                profileLink: "https://auth.geeksforgeeks.org/user/username"
+                name: "GFG",
+                count: 52,
+                badges: [],
+                profileLink: "https://www.geeksforgeeks.org/user/mastermind57369/"
             }
         ],
         topics: [
@@ -597,6 +597,7 @@ function loadDSAData() {
         platformDiv.innerHTML = `
             <div class="platform-header">
                 <span class="platform-name">${platform.name}</span>
+                &nbsp;&nbsp;
                 <span class="platform-count">${platform.count} solved</span>
             </div>
             <div class="platform-badges">

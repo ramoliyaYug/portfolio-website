@@ -851,7 +851,7 @@ pre {
 }
 
 .platform-count {
-    font-size: 11px;
+    font-size: 20px;
     color: var(--text-secondary);
 }
 
@@ -877,7 +877,7 @@ pre {
     padding: 3px 8px;
     border-radius: 4px;
     text-decoration: none;
-    font-size: 9px;
+    font-size: 15px;
     transition: all 0.2s;
 }
 
@@ -898,7 +898,7 @@ pre {
     color: var(--accent-primary);
     padding: 3px 6px;
     border-radius: 8px;
-    font-size: 9px;
+    font-size: 17px;
 }
 
 /* Enhanced Skills Section */
@@ -1237,7 +1237,7 @@ pre {
 }
 
 .fullscreen-device-screen .platform-name {
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .fullscreen-device-screen .skill-category h3 {
