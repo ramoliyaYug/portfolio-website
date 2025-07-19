@@ -35,7 +35,7 @@ const portfolioData = {
     lifeStats: {
         projectsBuilt: 15,
         dsaProblems: 1200,
-        yearsLearning: 3
+        yearsLearning: 0.5
     },
     currentlyLearning: [
         "Compose Multiplatform",
