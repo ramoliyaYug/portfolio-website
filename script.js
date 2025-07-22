@@ -1,32 +1,46 @@
 // Projects data - easily editable JSON
 const projectsData = [
     {
-        name: "Weather App",
-        description: "Modern weather app with beautiful UI and accurate forecasts using OpenWeather API",
-        technologies: ["Kotlin", "Compose", "Retrofit", "MVVM"],
-        githubLink: "https://github.com/username/weather-app",
-        apkLink: "https://appmandi.vercel.app/weather-app"
+        name: "ChugliHub",
+        description: "Anonymous chat app jaha tum bina dare apni chugliyaan share kar sakte ho. Full drama, full fun - bilkul no filter!",
+        technologies: ["Kotlin", "XML", "GitHub API", "OKHttp"],
+        githubLink: "https://github.com/ramoliyaYug/chugliHub-anonymousChatApp",
+        apkLink: "https://ramoliyayug.github.io/appMandi/ChugliHub/chugliHub.html"
     },
     {
-        name: "Task Manager",
-        description: "Productivity app with offline support, reminders, and clean architecture",
-        technologies: ["Kotlin", "Room", "Hilt", "Navigation"],
-        githubLink: "https://github.com/username/task-manager",
-        apkLink: "https://appmandi.vercel.app/task-manager"
+        name: "Level Up",
+        description: "Turn your daily tasks into a game like solo leveling! Earn points, level up, and stay motivated while completing your to-do list.",
+        technologies: ["Kotlin", "Compose", "MVVM", "Firebase", "RealtimeDB","Auth"],
+        githubLink: "https://github.com/ramoliyaYug/AndroidModule2/tree/main/sololevelinghabittrackerapp",
+        apkLink: "https://ramoliyayug.github.io/appMandi/LevelUp/levelUp.html"
     },
     {
-        name: "Expense Tracker",
-        description: "Financial management app with charts, categories, and budget planning",
-        technologies: ["Kotlin", "Firebase", "Charts", "Material3"],
-        githubLink: "https://github.com/username/expense-tracker",
-        apkLink: "https://appmandi.vercel.app/expense-tracker"
+        name: "Quantum Chat",
+        description: "Secure messaging app with safe authentication. Fast, reliable, and privacy-focused for all your conversations.",
+        technologies: ["Kotlin", "Firebase", "XML", "RealtimeDB", "Auth"],
+        githubLink: "https://github.com/ramoliyaYug/AndroidModule2/tree/main/chatAppFirebase",
+        apkLink: "https://ramoliyayug.github.io/appMandi/QuantumChat/quantumChat.html"
     },
     {
-        name: "News Reader",
-        description: "Clean news app with multiple sources, dark mode, and offline reading",
-        technologies: ["Kotlin", "Retrofit", "Glide", "ViewPager2"],
-        githubLink: "https://github.com/username/news-reader",
-        apkLink: "https://appmandi.vercel.app/news-reader"
+        name: "Zenity",
+        description: "Mindfulness and meditation app to help you relax, focus, and sleep better. Take a break from the digital chaos.",
+        technologies: ["Kotlin", "XML", "Firebase", "RealtimeDB", "Auth", "MVVM"],
+        githubLink: "https://github.com/ramoliyaYug/zenity",
+        apkLink: "https://ramoliyayug.github.io/appMandi/Zenity/zenity.html"
+    },
+    {
+        name: "Project Sync",
+        description: "Manage your projects efficiently with this lightweight project management tool. Track tasks, deadlines, and progress.",
+        technologies: ["Kotlin", "XML", "Firebase", "RealtimeDB", "Auth", "MVVM"],
+        githubLink: "https://github.com/ramoliyaYug/taskboardProAndroidApp",
+        apkLink: "https://ramoliyayug.github.io/appMandi/ProjectSync/projectSync.html"
+    },
+    {
+        name: "SkyCast",
+        description: "Simple and accurate weather forecasts with beautiful visualizations. Plan your day with confidence!",
+        technologies: ["Kotlin", "Compose", "Retrofit", "MVVM", "Clean Architecture", "Dependency Injection"],
+        githubLink: "https://github.com/ramoliyaYug/AndroidModule2/tree/main/weatherApp",
+        apkLink: "https://ramoliyayug.github.io/appMandi/WeatherApp/weatherApp.html"
     }
 ];
 
@@ -39,7 +53,7 @@ const portfolioData = {
     },
     currentlyLearning: [
         "Compose Multiplatform",
-        "Kotlin Multiplatform",
+        "Kotlin SpringBoot",
         "System Design",
         "Machine Learning"
     ],
@@ -539,7 +553,7 @@ function loadPortfolioData() {
 }
 
 function loadLifeStats() {
-    document.getElementById('projectsCount').textContent = portfolioData.lifeStats.projectsBuilt;
+    document.getElementById('projectsCount').textContent = portfolioData.lifeStats.projectsBuilt + '+';
     document.getElementById('dsaCount').textContent = portfolioData.lifeStats.dsaProblems + '+';
     document.getElementById('experienceYears').textContent = portfolioData.lifeStats.yearsLearning;
 }
