@@ -102,10 +102,10 @@ const portfolioData = {
     },
     skills: {
         languages: ["Kotlin", "Java", "JavaScript", "HTML", "CSS", "SQL"],
-        frameworks: ["Jetpack Compose", "RoomDB", "ReactJs", "ExpressJs", "NodeJs"],
-        tools: ["Android Studio", "Firebase", "Git", "Github"],
-        databases: ["Firebase Firestore", "RoomDB", "SQLite"],
-        concepts: ["MVVM Architecture", "REST API integration", "JSON parsing", "responsive UI", "mobile-first design", "modern Android development"]
+        frameworks: ["Jetpack Compose", "RoomDB","SpringBoot", "ReactJs", "ExpressJs", "NodeJs"],
+        tools: ["Android Studio","IntelliJ", "Firebase", "Git", "Github"],
+        databases: ["Firebase Firestore", "Firebase RealtimeDB", "RoomDB", "SQLite"],
+        concepts: ["MVVM Architecture", "Clean Architecture", "Dependency Injection", "REST API integration", "JSON parsing", "responsive UI","SOLID Principles","Gradle" , "Unit Testing"]
     },
     contact: {
         github: "https://github.com/username",
