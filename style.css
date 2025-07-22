@@ -951,7 +951,7 @@ pre {
 }
 
 .contact-form h4 {
-    font-size: 14px;
+    font-size: 20px;
     margin-bottom: 8px;
     color: var(--accent-primary);
     text-align: center;
@@ -1249,7 +1249,7 @@ pre {
 }
 
 .fullscreen-device-screen .contact-link {
-    font-size: 14px;
+    font-size: 17px;
     padding: 10px 12px;
 }
 

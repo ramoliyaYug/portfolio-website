@@ -108,12 +108,12 @@ const portfolioData = {
         concepts: ["MVVM Architecture", "Clean Architecture", "Dependency Injection", "REST API integration", "JSON parsing", "responsive UI","SOLID Principles","Gradle" , "Unit Testing"]
     },
     contact: {
-        github: "https://github.com/username",
-        linkedin: "https://linkedin.com/in/username",
-        instagram: "https://instagram.com/username",
-        medium: "https://medium.com/@username",
-        email: "developer@example.com",
-        phone: "+91 9876543210"
+        github: "https://github.com/ramoliyaYug",
+        linkedin: "https://www.linkedin.com/in/yug-ramoliya-25a3b0308/",
+        instagram: "https://www.instagram.com/ramoliyayug7/",
+        medium: "https://medium.com/@ramoliyayug55",
+        email: "ramoliyayug55@gmail.com",
+        phone: "+91 8140385672"
     }
 };
 
