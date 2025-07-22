@@ -396,7 +396,7 @@ function updateCodeEditor(fileName) {
             name = <span class="string">"Android Developer"</span>,
             bio = <span class="string">"Passionate Android Developer..."</span>,
             skills = <span class="function">listOf</span>(<span class="string">"Kotlin"</span>, <span class="string">"Compose"</span>),
-            experience = <span class="string">"1000+ DSA problems"</span>
+            experience = <span class="string">"1200+ DSA problems"</span>
         )
     }
     
@@ -434,11 +434,11 @@ function updateCodeEditor(fileName) {
 <span class="keyword">import</span> <span class="import">androidx.compose.material3.*</span>
 
 <span class="keyword">data class</span> <span class="class">DSAStats</span>(
-    <span class="keyword">val</span> <span class="variable">problemsSolved</span>: <span class="class">Int</span> = <span class="number">1000</span>,
+    <span class="keyword">val</span> <span class="variable">problemsSolved</span>: <span class="class">Int</span> = <span class="number">1200</span>,
     <span class="keyword">val</span> <span class="variable">platforms</span>: <span class="class">Map</span>&lt;<span class="class">String</span>, <span class="class">Int</span>&gt; = <span class="function">mapOf</span>(
-        <span class="string">"LeetCode"</span> to <span class="number">450</span>,
-        <span class="string">"Codeforces"</span> to <span class="number">300</span>,
-        <span class="string">"CodeChef"</span> to <span class="number">250</span>
+        <span class="string">"LeetCode"</span> to <span class="number">650</span>,
+        <span class="string">"Codeforces"</span> to <span class="number">200</span>,
+        <span class="string">"CodeChef"</span> to <span class="number">300</span>
     )
 )
 
