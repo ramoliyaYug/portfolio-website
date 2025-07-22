@@ -59,22 +59,10 @@ const portfolioData = {
     ],
     experience: [
         {
-            title: "Android Developer Intern",
-            company: "Tech Startup",
-            duration: "Jun 2024 - Aug 2024",
-            description: "Developed mobile applications using Kotlin and Jetpack Compose. Implemented MVVM architecture and integrated Firebase services for real-time data synchronization."
-        },
-        {
-            title: "Freelance Mobile Developer",
-            company: "Self-Employed",
-            duration: "Jan 2024 - Present",
-            description: "Built custom Android applications for small businesses. Specialized in e-commerce apps, productivity tools, and educational platforms with clean UI/UX design."
-        },
-        {
             title: "Open Source Contributor",
-            company: "Various Projects",
-            duration: "2023 - Present",
-            description: "Contributed to Android open-source projects on GitHub. Focused on improving UI components, fixing bugs, and adding new features to community-driven applications."
+            company: "2 Pull Requests Merged In Catrobat Organization",
+            duration: "2025-January",
+            description: "Contributed to Catrobat's open-source project Catroid. Converted Java code to Kotlin and fixed bugs and used Null Safety Feature of Kotlin."
         }
     ],
     dsaStats: {
