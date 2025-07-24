@@ -435,6 +435,12 @@ function updateTabsDisplay() {
     });
 }
 
+function handleAllTabOperations(fileName) {
+    openFileTab(fileName);
+    switchToTab(fileName);
+    updateTabsDisplay();
+}
+
 // Code Editor Updates
 function updateCodeEditor(fileName) {
     if (!fileName) return;
