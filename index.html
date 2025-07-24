@@ -5,13 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Android Studio - Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="ide-container">
     <!-- Top Toolbar -->
     <div class="toolbar">
         <div class="toolbar-left">
-            <div class="logo">Android Studio</div>
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+                Android Studio
+            </div>
             <div class="menu-items">
                 <span>File</span>
                 <span>Edit</span>
@@ -30,14 +38,20 @@
         </div>
         <div class="toolbar-right">
             <div class="toolbar-center">
-                <button id="runButton" class="run-button">
-                    <span class="run-icon">▶</span>
+                <button id="runButton" class="run-button" onclick="loadPortfolioData()">
+                    <svg class="run-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5,3 19,12 5,21 5,3"/>
+                    </svg>
                     Run App
                 </button>
             </div>
-            <div class="toolbar-actions">
-                <button id="themeToggle" class="theme-toggle">🌙</button>
-            </div>
+            <!--            <div class="toolbar-actions">-->
+            <!--                <button id="themeToggle" class="theme-toggle">-->
+            <!--                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">-->
+            <!--                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>-->
+            <!--                    </svg>-->
+            <!--                </button>-->
+            <!--            </div>-->
         </div>
     </div>
 
@@ -46,49 +60,82 @@
         <!-- Left Sidebar - Project Explorer -->
         <div class="sidebar">
             <div class="sidebar-header">
-                <h3>📁 Portfolio Project</h3>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                </svg>
+                <h3>Portfolio Project</h3>
             </div>
             <div class="file-tree">
                 <div class="folder expanded">
-                    <span class="folder-icon">📂</span>
+                    <span class="folder-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </span>
                     <span>app/src/main/java/portfolio</span>
                     <div class="file-list">
                         <div class="file active" data-file="aboutme">
-                            <span class="file-icon">📄</span>
+                            <span class="file-icon">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                    <line x1="16" y1="13" x2="8" y2="13"/>
+                                    <line x1="16" y1="17" x2="8" y2="17"/>
+                                    <polyline points="10,9 9,9 8,9"/>
+                                </svg>
+                            </span>
                             AboutMe.kt
                         </div>
                         <div class="file" data-file="projects">
-                            <span class="file-icon">📄</span>
+                            <span class="file-icon">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                    <line x1="16" y1="13" x2="8" y2="13"/>
+                                    <line x1="16" y1="17" x2="8" y2="17"/>
+                                    <polyline points="10,9 9,9 8,9"/>
+                                </svg>
+                            </span>
                             Projects.kt
                         </div>
                         <div class="file" data-file="dsa">
-                            <span class="file-icon">📄</span>
+                            <span class="file-icon">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                    <line x1="16" y1="13" x2="8" y2="13"/>
+                                    <line x1="16" y1="17" x2="8" y2="17"/>
+                                    <polyline points="10,9 9,9 8,9"/>
+                                </svg>
+                            </span>
                             DSA.kt
                         </div>
                         <div class="file" data-file="skills">
-                            <span class="file-icon">📄</span>
+                            <span class="file-icon">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                    <line x1="16" y1="13" x2="8" y2="13"/>
+                                    <line x1="16" y1="17" x2="8" y2="17"/>
+                                    <polyline points="10,9 9,9 8,9"/>
+                                </svg>
+                            </span>
                             Skills.kt
                         </div>
                         <div class="file" data-file="contact">
-                            <span class="file-icon">📄</span>
+                            <span class="file-icon">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                    <line x1="16" y1="13" x2="8" y2="13"/>
+                                    <line x1="16" y1="17" x2="8" y2="17"/>
+                                    <polyline points="10,9 9,9 8,9"/>
+                                </svg>
+                            </span>
                             Contact.kt
                         </div>
                     </div>
                 </div>
-<!--                <div class="folder">-->
-<!--                    <span class="folder-icon">📂</span>-->
-<!--                    <span>app/src/main/res/layout</span>-->
-<!--                    <div class="file-list">-->
-<!--                        <div class="file">-->
-<!--                            <span class="file-icon">📱</span>-->
-<!--                            activity_main.xml-->
-<!--                        </div>-->
-<!--                        <div class="file">-->
-<!--                            <span class="file-icon">📱</span>-->
-<!--                            fragment_profile.xml-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
             </div>
         </div>
 
@@ -97,10 +144,37 @@
             <div class="editor-tabs">
                 <div class="tab active" data-file="aboutme">
                     <span>AboutMe.kt</span>
-                    <span class="close-tab">×</span>
+                    <span class="close-tab">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </span>
                 </div>
             </div>
             <div class="code-editor">
+                <div class="line-numbers">
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <span>4</span>
+                    <span>5</span>
+                    <span>6</span>
+                    <span>7</span>
+                    <span>8</span>
+                    <span>9</span>
+                    <span>10</span>
+                    <span>11</span>
+                    <span>12</span>
+                    <span>13</span>
+                    <span>14</span>
+                    <span>15</span>
+                    <span>16</span>
+                    <span>17</span>
+                    <span>18</span>
+                    <span>19</span>
+                    <span>20</span>
+                </div>
                 <div class="code-content">
                         <pre><code id="codeDisplay"><span class="keyword">package</span> <span class="package">com.portfolio.developer</span>
 
@@ -133,6 +207,25 @@
         <!-- Right - Android Emulator -->
         <div class="emulator-container">
             <div class="emulator">
+                <div class="emulator-header">
+                    <div class="emulator-controls">
+                        <div class="emulator-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                <line x1="8" y1="21" x2="16" y2="21"/>
+                                <line x1="12" y1="17" x2="12" y2="21"/>
+                            </svg>
+                            Pixel 7 API 34
+                        </div>
+                        <div class="emulator-buttons">
+                            <button class="emulator-btn">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 6L6 18M6 6l12 12"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 <div class="device-frame">
                     <div class="device-screen">
                         <!-- Emulator Home Screen -->
@@ -141,7 +234,13 @@
                                 <div class="home-time">12:34</div>
                                 <div class="home-date">Monday, December 16</div>
                                 <div class="app-icon" id="portfolioAppIcon">
-                                    <div class="icon">📱</div>
+                                    <div class="icon">
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                            <line x1="8" y1="21" x2="16" y2="21"/>
+                                            <line x1="12" y1="17" x2="12" y2="21"/>
+                                        </svg>
+                                    </div>
                                     <span>Portfolio</span>
                                 </div>
                             </div>
@@ -152,9 +251,16 @@
                             <div class="status-bar">
                                 <span class="time">12:34</span>
                                 <div class="status-icons">
-                                    <span>📶</span>
-                                    <span>📶</span>
-                                    <span>🔋</span>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                                        <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+                                        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+                                        <line x1="12" y1="20" x2="12.01" y2="20"/>
+                                    </svg>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="1" y="6" width="18" height="12" rx="2" ry="2"/>
+                                        <line x1="22" y1="10" x2="22" y2="14"/>
+                                    </svg>
                                 </div>
                             </div>
 
@@ -167,7 +273,13 @@
                                     </div>
                                     <div class="profile-section">
                                         <div class="profile-image">
-                                            <div class="avatar">👨‍💻</div>
+                                            <div class="avatar">
+                                                <!--                                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">-->
+                                                <!--                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>-->
+                                                <!--                                                    <circle cx="12" cy="7" r="4"/>-->
+                                                <!--                                                </svg>-->
+                                                <img src="photo2.jpeg" alt="photo" style="width: 115px; height: 115px; border-radius: 50%; object-fit: cover;">
+                                            </div>
                                         </div>
                                         <h3>Android Developer</h3>
                                         <p class="bio">Android Developer with expertise in Kotlin, Jetpack Compose, and Firebase. As a B.Tech (AI/ML) student, I combine mobile development skills with strong algorithmic thinking, having solved 1200+ DSA problems across multiple platforms.</p>
@@ -183,23 +295,56 @@
                                                 <span class="stat-label">DSA Solved</span>
                                             </div>
                                             <div class="stat-item">
-                                                <span class="stat-number" id="experienceYears">0</span>
+                                                <span class="stat-number" id="experienceYears">1</span>
                                                 <span class="stat-label">Years Learning</span>
                                             </div>
                                         </div>
 
                                         <div class="currently-learning">
-                                            <h4>🚀 Currently Learning</h4>
+                                            <h4>
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                                </svg>
+                                                Currently Learning
+                                            </h4>
                                             <div class="learning-tags" id="learningTags">
                                                 <!-- Dynamic content -->
                                             </div>
                                         </div>
 
                                         <div class="social-links">
-                                            <button class="social-btn github" onclick="window.open('https://github.com/ramoliyaYug', '_blank')">GitHub</button>
-                                            <button class="social-btn linkedin" onclick="window.open('https://www.linkedin.com/in/yug-ramoliya-25a3b0308/', '_blank')">LinkedIn</button>
-                                            <button class="social-btn resume" onclick="window.open('https://drive.google.com/file/d/1yoZDe9w5HnbZkdN1YqEqS4zlTYI3N453/view?usp=sharing', '_blank')">Resume</button>
-                                            <button class="social-btn linkedin" onclick="window.open('https://ramoliyayug.github.io/appMandi/', '_blank')">AppMandi</button>
+                                            <button class="social-btn github" onclick="window.open('https://github.com/ramoliyaYug', '_blank')">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                                </svg>
+                                                GitHub
+                                            </button>
+                                            <button class="social-btn linkedin" onclick="window.open('https://www.linkedin.com/in/yug-ramoliya-25a3b0308/', '_blank')">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                                    <rect x="2" y="9" width="4" height="12"/>
+                                                    <circle cx="4" cy="4" r="2"/>
+                                                </svg>
+                                                LinkedIn
+                                            </button>
+                                            <button class="social-btn resume" onclick="window.open('https://drive.google.com/file/d/1yoZDe9w5HnbZkdN1YqEqS4zlTYI3N453/view?usp=sharing', '_blank')">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                                    <polyline points="14,2 14,8 20,8"/>
+                                                    <line x1="16" y1="13" x2="8" y2="13"/>
+                                                    <line x1="16" y1="17" x2="8" y2="17"/>
+                                                    <polyline points="10,9 9,9 8,9"/>
+                                                </svg>
+                                                Resume
+                                            </button>
+                                            <button class="social-btn appmandi" onclick="window.open('https://ramoliyayug.github.io/appMandi/', '_blank')">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                                    <line x1="8" y1="21" x2="16" y2="21"/>
+                                                    <line x1="12" y1="17" x2="12" y2="21"/>
+                                                </svg>
+                                                AppMandi
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -236,7 +381,13 @@
                                             <!-- Dynamic content -->
                                         </div>
                                         <div class="dsa-topics">
-                                            <h4>📚 Topics Mastered</h4>
+                                            <h4>
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                                                </svg>
+                                                Topics Mastered
+                                            </h4>
                                             <div class="topics-grid" id="dsaTopics">
                                                 <!-- Dynamic content -->
                                             </div>
@@ -265,39 +416,71 @@
                                         <!-- Dynamic content -->
                                     </div>
                                     <div class="contact-form">
-                                        <h4>📧 Send Message</h4>
+                                        <h4>
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                                <polyline points="22,6 12,13 2,6"/>
+                                            </svg>
+                                            Send Message
+                                        </h4>
                                         <input type="text" id="contactName" placeholder="Your Name" class="form-input">
                                         <input type="email" id="contactEmail" placeholder="Your Email" class="form-input">
                                         <textarea id="contactMessage" placeholder="Your Message" class="form-textarea"></textarea>
-                                        <button id="sendMessageBtn" class="send-btn">Send Message</button>
+                                        <button id="sendMessageBtn" class="send-btn">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <line x1="22" y1="2" x2="11" y2="13"/>
+                                                <polygon points="22,2 15,22 11,13 2,9 22,2"/>
+                                            </svg>
+                                            Send Message
+                                        </button>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Bottom Navigation -->
                             <div class="bottom-nav">
-                                <button class="nav-btn active" data-screen="about">
-                                    <span>👨‍💻</span>
+                                <button class="nav-btn active" data-screen="about" onclick="switchScreen('about')">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
                                     <span>About</span>
                                 </button>
-                                <button class="nav-btn" data-screen="experience">
-                                    <span>💼</span>
+                                <button class="nav-btn" data-screen="experience" onclick="switchScreen('experience')">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                        <line x1="8" y1="21" x2="16" y2="21"/>
+                                        <line x1="12" y1="17" x2="12" y2="21"/>
+                                    </svg>
                                     <span>Experience</span>
                                 </button>
-                                <button class="nav-btn" data-screen="projects">
-                                    <span>📱</span>
+                                <button class="nav-btn" data-screen="projects" onclick="switchScreen('projects')">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                        <line x1="8" y1="21" x2="16" y2="21"/>
+                                        <line x1="12" y1="17" x2="12" y2="21"/>
+                                    </svg>
                                     <span>Projects</span>
                                 </button>
-                                <button class="nav-btn" data-screen="dsa">
-                                    <span>📊</span>
+                                <button class="nav-btn" data-screen="dsa" onclick="switchScreen('dsa')">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="18" y1="20" x2="18" y2="10"/>
+                                        <line x1="12" y1="20" x2="12" y2="4"/>
+                                        <line x1="6" y1="20" x2="6" y2="14"/>
+                                    </svg>
                                     <span>DSA</span>
                                 </button>
-                                <button class="nav-btn" data-screen="skills">
-                                    <span>⚡</span>
+                                <button class="nav-btn" data-screen="skills" onclick="switchScreen('skills')">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                                    </svg>
                                     <span>Skills</span>
                                 </button>
-                                <button class="nav-btn" data-screen="contact">
-                                    <span>📧</span>
+                                <button class="nav-btn" data-screen="contact" onclick="switchScreen('contact')">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                        <polyline points="22,6 12,13 2,6"/>
+                                    </svg>
                                     <span>Contact</span>
                                 </button>
                             </div>
@@ -311,8 +494,21 @@
     <!-- Bottom - Logcat Console -->
     <div class="logcat">
         <div class="logcat-header">
-            <span>Logcat</span>
-            <button id="clearLogcat">Clear</button>
+            <div class="logcat-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+                Logcat
+            </div>
+            <button id="clearLogcat" onclick="{logcatContent.innerHTML = ''; logMessage('I/Portfolio: Logcat cleared', 'info');}">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3,6 5,6 21,6"/>
+                    <path d="M19,6v14a2,2 0 0,1 -2,2H7a2,2 0 0,1 -2,-2V6m3,0V4a2,2 0 0,1 2,-2h4a2,2 0 0,1 2,2v2"/>
+                </svg>
+                Clear
+            </button>
         </div>
         <div class="logcat-content" id="logcatContent">
             <div class="log-entry info">I/Portfolio: IDE initialized successfully</div>
@@ -330,7 +526,10 @@
     <div class="fullscreen-phone-container">
         <div class="fullscreen-header">
             <button class="back-button" id="backToIde">
-                <span>←</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"/>
+                    <polyline points="12,19 5,12 12,5"/>
+                </svg>
                 Back to IDE
             </button>
             <span class="fullscreen-title">Portfolio App</span>

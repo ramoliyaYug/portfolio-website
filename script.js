@@ -48,8 +48,8 @@ const projectsData = [
 const portfolioData = {
     lifeStats: {
         projectsBuilt: 15,
-        dsaProblems: 1200,
-        yearsLearning: 0.5
+        dsaProblems: 1257,
+        yearsLearning: 1
     },
     currentlyLearning: [
         "Compose Multiplatform",
@@ -149,7 +149,48 @@ document.addEventListener('DOMContentLoaded', function() {
     loadPortfolioData();
     updateCodeEditor(activeTab);
     updateTabsDisplay();
+    animateStats();
 });
+
+// Animate statistics counters
+function animateStats() {
+    const stats = [
+        { element: document.getElementById('projectsCount'), target: portfolioData.lifeStats.projectsBuilt, suffix: '+' },
+        { element: document.getElementById('dsaCount'), target: portfolioData.lifeStats.dsaProblems, suffix: '+' },
+        { element: document.getElementById('experienceYears'), target: portfolioData.lifeStats.yearsLearning, suffix: '' }
+    ];
+
+    stats.forEach(stat => {
+        if (stat.element) {
+            animateCounter(stat.element, 1, stat.target, 100, stat.suffix);
+        }
+    });
+}
+
+function animateCounter(element, start, end, duration, suffix = '') {
+    const range = end - start;
+    const minTimer = 50;
+    let stepTime = Math.abs(Math.floor(duration / range));
+    stepTime = Math.max(stepTime, minTimer);
+
+    const startTime = new Date().getTime();
+    const endTime = startTime + duration;
+    let timer;
+
+    function run() {
+        const now = new Date().getTime();
+        const remaining = Math.max((endTime - now) / duration, 0);
+        const value = Math.round(end - (remaining * range));
+        element.textContent = value + suffix;
+
+        if (value === end) {
+            clearInterval(timer);
+        }
+    }
+
+    timer = setInterval(run, stepTime);
+    run();
+}
 
 // Event Listeners Setup
 function setupEventListeners() {
@@ -206,7 +247,7 @@ function setupEventListeners() {
 
     // Tab clicks and close buttons
     editorTabs.addEventListener('click', function(e) {
-        if (e.target.classList.contains('close-tab')) {
+        if (e.target.closest('.close-tab')) {
             const tab = e.target.closest('.tab');
             const fileName = tab.dataset.file;
             closeFileTab(fileName);
@@ -222,6 +263,10 @@ function setupEventListeners() {
         logcatContent.innerHTML = '';
         logMessage('I/Portfolio: Logcat cleared', 'info');
     });
+    function clearLogcatFn() {
+        logcatContent.innerHTML = '';
+        logMessage('I/Portfolio: Logcat cleared', 'info');
+    }
 
     // Send message button
     sendMessageBtn.addEventListener('click', function() {
@@ -251,7 +296,11 @@ function setupEventListeners() {
 function startApp() {
     emulatorHome.style.display = 'none';
     portfolioApp.style.display = 'flex';
-    runButton.innerHTML = '<span class="run-icon">⏹</span>Stop App';
+
+    // Update run button
+    const runIcon = runButton.querySelector('svg');
+    runIcon.innerHTML = '<rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>';
+    runButton.innerHTML = runIcon.outerHTML + 'Stop App';
     runButton.style.background = '#f44336';
     appRunning = true;
 
@@ -273,7 +322,11 @@ function stopApp() {
     closeFullscreenPhone();
     emulatorHome.style.display = 'flex';
     portfolioApp.style.display = 'none';
-    runButton.innerHTML = '<span class="run-icon">▶</span>Run App';
+
+    // Update run button
+    const runIcon = runButton.querySelector('svg');
+    runIcon.innerHTML = '<polygon points="5,3 19,12 5,21 5,3"/>';
+    runButton.innerHTML = runIcon.outerHTML + 'Run App';
     runButton.style.background = '#4caf50';
     appRunning = false;
 
@@ -370,7 +423,12 @@ function updateTabsDisplay() {
 
         tab.innerHTML = `
             <span>${fileDisplayNames[fileName] || fileName + '.kt'}</span>
-            <span class="close-tab">×</span>
+            <span class="close-tab">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </span>
         `;
 
         editorTabs.appendChild(tab);
@@ -534,6 +592,7 @@ function loadPortfolioData() {
     loadLifeStats();
     loadCurrentlyLearning();
     loadExperience();
+    loadProjects();
     loadDSAData();
     loadSkills();
     loadContactLinks();
@@ -541,19 +600,21 @@ function loadPortfolioData() {
 }
 
 function loadLifeStats() {
-    document.getElementById('projectsCount').textContent = portfolioData.lifeStats.projectsBuilt + '+';
-    document.getElementById('dsaCount').textContent = portfolioData.lifeStats.dsaProblems + '+';
-    document.getElementById('experienceYears').textContent = portfolioData.lifeStats.yearsLearning;
+    // Stats will be animated on page load
+    setTimeout(() => {
+        animateStats();
+    }, 50);
 }
 
 function loadCurrentlyLearning() {
     const learningTags = document.getElementById('learningTags');
     learningTags.innerHTML = '';
 
-    portfolioData.currentlyLearning.forEach(skill => {
+    portfolioData.currentlyLearning.forEach((skill, index) => {
         const tag = document.createElement('span');
         tag.className = 'learning-tag';
         tag.textContent = skill;
+        tag.style.animationDelay = `${index * 0.1}s`;
         learningTags.appendChild(tag);
     });
 }
@@ -599,7 +660,6 @@ function loadDSAData() {
         platformDiv.innerHTML = `
             <div class="platform-header">
                 <span class="platform-name">${platform.name}</span>
-                &nbsp;&nbsp;
                 <span class="platform-count">${platform.count} solved</span>
             </div>
             <div class="platform-badges">
@@ -652,27 +712,45 @@ function loadContactLinks() {
     const contactLinks = document.getElementById('contactLinks');
     contactLinks.innerHTML = `
         <a href="${portfolioData.contact.github}" class="contact-link" target="_blank">
-            <span>🐙</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
             <span>GitHub</span>
         </a>
         <a href="${portfolioData.contact.linkedin}" class="contact-link" target="_blank">
-            <span>💼</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                <rect x="2" y="9" width="4" height="12"/>
+                <circle cx="4" cy="4" r="2"/>
+            </svg>
             <span>LinkedIn</span>
         </a>
         <a href="${portfolioData.contact.instagram}" class="contact-link" target="_blank">
-            <span>📸</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
             <span>Instagram</span>
         </a>
         <a href="${portfolioData.contact.medium}" class="contact-link" target="_blank">
-            <span>📝</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
             <span>Medium</span>
         </a>
         <a href="mailto:${portfolioData.contact.email}" class="contact-link">
-            <span>📧</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+            </svg>
             <span>Email</span>
         </a>
         <a href="tel:${portfolioData.contact.phone}" class="contact-link">
-            <span>📞</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
             <span>Call</span>
         </a>
     `;
@@ -682,7 +760,14 @@ function loadContactLinks() {
 function toggleTheme() {
     currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', currentTheme);
-    themeToggle.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
+
+    // Update theme toggle icon
+    const themeIcon = themeToggle.querySelector('svg');
+    if (currentTheme === 'light') {
+        themeIcon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+    } else {
+        themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+    }
 
     logMessage(`I/Theme: Switched to ${currentTheme} mode`, 'info');
 }
@@ -728,17 +813,46 @@ function handleContactForm() {
 function openFullscreenPhone() {
     if (!appRunning) return;
 
-    // Copy the portfolio app content to fullscreen modal
-    const originalContent = portfolioApp.innerHTML;
+    // Clone the portfolio app content to fullscreen modal with deep cloning
+    const portfolioAppClone = portfolioApp.cloneNode(true);
+
+    // Ensure unique IDs for fullscreen elements
+    const elementsWithIds = portfolioAppClone.querySelectorAll('[id]');
+    elementsWithIds.forEach(element => {
+        element.id = 'fs-' + element.id;
+    });
+
     const fullscreenScreen = fullscreenModal.querySelector('.fullscreen-device-screen');
-    fullscreenScreen.innerHTML = originalContent;
+    fullscreenScreen.innerHTML = '';
+    fullscreenScreen.appendChild(portfolioAppClone);
 
     // Show fullscreen modal
     fullscreenModal.classList.add('show');
     document.body.style.overflow = 'hidden';
 
-    // Re-setup navigation for fullscreen
-    setupFullscreenNavigation();
+    // Small delay to ensure DOM is ready, then setup navigation
+    setTimeout(() => {
+        setupFullscreenNavigation();
+
+        // Ensure the current screen is active in fullscreen
+        const fullscreenScreens = fullscreenModal.querySelectorAll('.screen');
+        const fullscreenNavButtons = fullscreenModal.querySelectorAll('.nav-btn');
+
+        // Clear all active states first
+        fullscreenScreens.forEach(screen => screen.classList.remove('active'));
+        fullscreenNavButtons.forEach(btn => btn.classList.remove('active'));
+
+        // Set the current screen as active
+        const activeScreen = fullscreenModal.querySelector(`#fs-${currentScreen}Screen`);
+        const activeNavBtn = fullscreenModal.querySelector(`[data-screen="${currentScreen}"]`);
+
+        if (activeScreen) activeScreen.classList.add('active');
+        if (activeNavBtn) activeNavBtn.classList.add('active');
+
+        // Load portfolio data in fullscreen context
+        loadFullscreenPortfolioData();
+    }, 100);
+
 
     logMessage('I/UI: Opened fullscreen phone view', 'info');
 }
@@ -764,19 +878,25 @@ function setupFullscreenNavigation() {
 
             // Update screens
             fullscreenScreens.forEach(screen => screen.classList.remove('active'));
-            fullscreenModal.querySelector(`#${screenName}Screen`).classList.add('active');
+            const targetScreen = fullscreenModal.querySelector(`#fs-${screenName}Screen`);
+            if (targetScreen) {
+                targetScreen.classList.add('active');
+            }
+
+            // Update current screen state
+            currentScreen = screenName;
 
             logMessage(`I/Fullscreen: Switched to ${screenName} screen`, 'info');
         });
     });
 
     // Setup contact form in fullscreen
-    const fullscreenSendBtn = fullscreenModal.querySelector('#sendMessageBtn');
+    const fullscreenSendBtn = fullscreenModal.querySelector('#fs-sendMessageBtn');
     if (fullscreenSendBtn) {
         fullscreenSendBtn.addEventListener('click', function() {
-            const name = fullscreenModal.querySelector('#contactName').value;
-            const email = fullscreenModal.querySelector('#contactEmail').value;
-            const message = fullscreenModal.querySelector('#contactMessage').value;
+            const name = fullscreenModal.querySelector('#fs-contactName').value;
+            const email = fullscreenModal.querySelector('#fs-contactEmail').value;
+            const message = fullscreenModal.querySelector('#fs-contactMessage').value;
 
             if (!name.trim() || !email.trim() || !message.trim()) {
                 showToast('Please fill all fields');
@@ -784,14 +904,70 @@ function setupFullscreenNavigation() {
             }
 
             // Clear form
-            fullscreenModal.querySelector('#contactName').value = '';
-            fullscreenModal.querySelector('#contactEmail').value = '';
-            fullscreenModal.querySelector('#contactMessage').value = '';
+            fullscreenModal.querySelector('#fs-contactName').value = '';
+            fullscreenModal.querySelector('#fs-contactEmail').value = '';
+            fullscreenModal.querySelector('#fs-contactMessage').value = '';
 
             showToast('Message sent successfully!');
             logMessage('I/Contact: Message sent from fullscreen', 'info');
         });
     }
+
+    // Setup social buttons in fullscreen
+    const fullscreenSocialBtns = fullscreenModal.querySelectorAll('.social-btn');
+    fullscreenSocialBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const type = this.classList[1];
+            logMessage(`I/Social: ${type} link clicked in fullscreen`, 'info');
+            showToast(`Opening ${type}...`);
+        });
+    });
+
+    // Setup project links in fullscreen
+    const fullscreenProjectLinks = fullscreenModal.querySelectorAll('.project-link');
+    fullscreenProjectLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            const linkType = this.textContent;
+            logMessage(`I/Projects: ${linkType} link clicked in fullscreen`, 'info');
+            showToast(`Opening ${linkType}...`);
+        });
+    });
+
+    // Setup contact links in fullscreen
+    const fullscreenContactLinks = fullscreenModal.querySelectorAll('.contact-link');
+    fullscreenContactLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            const linkType = this.textContent.trim();
+            logMessage(`I/Contact: ${linkType} link clicked in fullscreen`, 'info');
+            showToast(`Opening ${linkType}...`);
+        });
+    });
+
+    // Setup platform links in fullscreen (DSA section)
+    const fullscreenPlatformLinks = fullscreenModal.querySelectorAll('.platform-link');
+    fullscreenPlatformLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            logMessage('I/DSA: Platform profile link clicked in fullscreen', 'info');
+            showToast('Opening profile...');
+        });
+    });
+
+    // Ensure stats animation works in fullscreen
+    const fullscreenStatsElements = [
+        { element: fullscreenModal.querySelector('#fs-projectsCount'), target: portfolioData.lifeStats.projectsBuilt, suffix: '+' },
+        { element: fullscreenModal.querySelector('#fs-dsaCount'), target: portfolioData.lifeStats.dsaProblems, suffix: '+' },
+        { element: fullscreenModal.querySelector('#fs-experienceYears'), target: portfolioData.lifeStats.yearsLearning, suffix: '' }
+    ];
+
+    fullscreenStatsElements.forEach(stat => {
+        if (stat.element) {
+            // Reset counter and animate
+            stat.element.textContent = '0' + stat.suffix;
+            setTimeout(() => {
+                animateCounter(stat.element, 0, stat.target, 2000, stat.suffix);
+            }, 300);
+        }
+    });
 }
 
 // Logging Functions
@@ -801,6 +977,186 @@ function logMessage(message, type = 'info') {
     logEntry.textContent = `${getCurrentTime()} ${message}`;
     logcatContent.appendChild(logEntry);
     logcatContent.scrollTop = logcatContent.scrollHeight;
+}
+
+// Load portfolio data specifically for fullscreen context
+function loadFullscreenPortfolioData() {
+    // Load projects in fullscreen
+    const fullscreenProjectsList = fullscreenModal.querySelector('#fs-projectsList');
+    if (fullscreenProjectsList) {
+        fullscreenProjectsList.innerHTML = '';
+
+        projectsData.forEach(project => {
+            const projectCard = document.createElement('div');
+            projectCard.className = 'project-card';
+            projectCard.innerHTML = `
+                <h3>${project.name}</h3>
+                <p>${project.description}</p>
+                <div class="project-tech">
+                    ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                </div>
+                <div class="project-links">
+                    <a href="${project.githubLink}" class="project-link" target="_blank">GitHub</a>
+                    <a href="${project.apkLink}" class="project-link" target="_blank">APK</a>
+                </div>
+            `;
+            fullscreenProjectsList.appendChild(projectCard);
+        });
+    }
+
+    // Load currently learning tags in fullscreen
+    const fullscreenLearningTags = fullscreenModal.querySelector('#fs-learningTags');
+    if (fullscreenLearningTags) {
+        fullscreenLearningTags.innerHTML = '';
+        portfolioData.currentlyLearning.forEach((skill, index) => {
+            const tag = document.createElement('span');
+            tag.className = 'learning-tag';
+            tag.textContent = skill;
+            tag.style.animationDelay = `${index * 0.1}s`;
+            fullscreenLearningTags.appendChild(tag);
+        });
+    }
+
+    // Load experience in fullscreen
+    const fullscreenExperienceContent = fullscreenModal.querySelector('#fs-experienceContent');
+    if (fullscreenExperienceContent) {
+        fullscreenExperienceContent.innerHTML = '';
+        portfolioData.experience.forEach(exp => {
+            const expItem = document.createElement('div');
+            expItem.className = 'experience-item';
+            expItem.innerHTML = `
+                <div class="experience-title">${exp.title}</div>
+                <div class="experience-company">${exp.company}</div>
+                <div class="experience-duration">${exp.duration}</div>
+                <div class="experience-description">${exp.description}</div>
+            `;
+            fullscreenExperienceContent.appendChild(expItem);
+        });
+    }
+
+    // Load DSA data in fullscreen
+    const fullscreenDsaOverview = fullscreenModal.querySelector('#fs-dsaOverview');
+    if (fullscreenDsaOverview) {
+        fullscreenDsaOverview.innerHTML = `
+            <div class="dsa-stat-card">
+                <h3>${portfolioData.dsaStats.totalProblems}+</h3>
+                <p>Problems Solved</p>
+            </div>
+            <div class="dsa-stat-card">
+                <h3>${portfolioData.dsaStats.activeDays}</h3>
+                <p>Active Days</p>
+            </div>
+        `;
+    }
+
+    const fullscreenDsaPlatforms = fullscreenModal.querySelector('#fs-dsaPlatforms');
+    if (fullscreenDsaPlatforms) {
+        fullscreenDsaPlatforms.innerHTML = '';
+        portfolioData.dsaStats.platforms.forEach(platform => {
+            const platformDiv = document.createElement('div');
+            platformDiv.className = 'platform';
+            platformDiv.innerHTML = `
+                <div class="platform-header">
+                    <span class="platform-name">${platform.name}</span>
+                    <span class="platform-count">${platform.count} solved</span>
+                </div>
+                <div class="platform-badges">
+                    ${platform.badges.map(badge => `<span class="badge-tag">${badge}</span>`).join('')}
+                </div>
+                <a href="${platform.profileLink}" class="platform-link" target="_blank">View Profile</a>
+            `;
+            fullscreenDsaPlatforms.appendChild(platformDiv);
+        });
+    }
+
+    const fullscreenDsaTopics = fullscreenModal.querySelector('#fs-dsaTopics');
+    if (fullscreenDsaTopics) {
+        fullscreenDsaTopics.innerHTML = '';
+        portfolioData.dsaStats.topics.forEach(topic => {
+            const topicTag = document.createElement('span');
+            topicTag.className = 'topic-tag';
+            topicTag.textContent = topic;
+            fullscreenDsaTopics.appendChild(topicTag);
+        });
+    }
+
+    // Load skills in fullscreen
+    const fullscreenSkillsContent = fullscreenModal.querySelector('#fs-skillsContent');
+    if (fullscreenSkillsContent) {
+        fullscreenSkillsContent.innerHTML = `
+            <div class="skill-category">
+                <h3>• Languages</h3>
+                <div class="skill-list">${portfolioData.skills.languages.join(', ')}</div>
+            </div>
+            <div class="skill-category">
+                <h3>• Frameworks/Libraries</h3>
+                <div class="skill-list">${portfolioData.skills.frameworks.join(', ')}</div>
+            </div>
+            <div class="skill-category">
+                <h3>• Tools & Platforms</h3>
+                <div class="skill-list">${portfolioData.skills.tools.join(', ')}</div>
+            </div>
+            <div class="skill-category">
+                <h3>• Databases</h3>
+                <div class="skill-list">${portfolioData.skills.databases.join(', ')}</div>
+            </div>
+            <div class="skill-category">
+                <h3>• Core Concepts</h3>
+                <div class="skill-list">${portfolioData.skills.concepts.join(', ')}</div>
+            </div>
+        `;
+    }
+
+    // Load contact links in fullscreen
+    const fullscreenContactLinks = fullscreenModal.querySelector('#fs-contactLinks');
+    if (fullscreenContactLinks) {
+        fullscreenContactLinks.innerHTML = `
+            <a href="${portfolioData.contact.github}" class="contact-link" target="_blank">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+                <span>GitHub</span>
+            </a>
+            <a href="${portfolioData.contact.linkedin}" class="contact-link" target="_blank">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                    <rect x="2" y="9" width="4" height="12"/>
+                    <circle cx="4" cy="4" r="2"/>
+                </svg>
+                <span>LinkedIn</span>
+            </a>
+            <a href="${portfolioData.contact.instagram}" class="contact-link" target="_blank">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+                <span>Instagram</span>
+            </a>
+            <a href="${portfolioData.contact.medium}" class="contact-link" target="_blank">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                </svg>
+                <span>Medium</span>
+            </a>
+            <a href="mailto:${portfolioData.contact.email}" class="contact-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <span>Email</span>
+            </a>
+            <a href="tel:${portfolioData.contact.phone}" class="contact-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                <span>Call</span>
+            </a>
+        `;
+    }
+
+    logMessage('I/Fullscreen: Portfolio data loaded successfully', 'info');
 }
 
 function getCurrentTime() {
